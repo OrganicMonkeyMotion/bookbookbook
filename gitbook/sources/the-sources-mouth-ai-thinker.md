@@ -81,3 +81,11 @@ git submodule update --init --recursive
 
 
 
+Problem was it was raising a CANTCO on the install, with the following message buried in the output window:
+
+```
+virtualenv: error: unrecognized arguments: --no-site-packages
+```
+
+Didn't immediately make sense.  [Solved with a little digging](../fly-crash-fix-fly/solution-1.md).
+
