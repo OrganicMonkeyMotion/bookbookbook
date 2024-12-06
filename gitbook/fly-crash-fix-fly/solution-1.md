@@ -83,3 +83,25 @@ echo ""
 
 This actually means I can go back (maybe) and try the hand build - one day.
 
+The trick is in /tools/idf\_tools.py there is one instance of "--no-site-package" inside the function:
+
+```
+def action_install_python_env(args):
+   // blah blah
+   ...
+   // was
+   subprocess.check_call([sys.executable, '-m', 'virtualenv', '--no-site-package',idf_python_env_path],
+      stdout=sys.stdout, stderr=sys.stderr)
+   // is now
+   subprocess.check_call([sys.executable, '-m', 'virtualenv', idf_python_env_path],
+      stdout=sys.stdout, stderr=sys.stderr)
+```
+
+Delete that sucker, taking care with the function signature, then run:
+
+```
+./install2ndHalf.sh
+```
+
+
+
